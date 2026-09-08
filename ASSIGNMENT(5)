@@ -1,0 +1,62 @@
+# Team assignment
+
+StudyNest is split into three member folders so each student owns a clear part of the project.
+
+## Member 1 - Frontend Developer
+
+Folder: `member-1-frontend`
+
+Technology: React, HTML, CSS, JavaScript, Vite
+
+Build these screens:
+
+1. Login page and Sign up page with email
+2. Home with student name and wallpaper
+3. Summariser (500 word limit, PDF / ZIP / TXT)
+4. Quiz generator (up to 20 MCQs A B C D)
+5. Result page with time and attempt count
+6. Tools with unique icons
+   - Flash card generator
+   - Paragraph to bullets
+   - Maths text to algebra / geometry diagram
+7. Settings: revision mode, dark/light mode, wallpaper photo
+8. Daily reminder timer alarm
+9. Weekly report
+10. Monthly report
+11. Daily task rewards in points
+12. User history
+
+## Member 2 - Backend Developer
+
+Folder: `member-2-backend`
+
+Technology: Spring Boot (Java), MySQL (H2 for local demo)
+
+Build:
+
+- Email authentication (JWT)
+- All REST APIs used by Member 1
+- Database tables and connections
+- File upload handling for PDF / TXT / ZIP
+- Calls to Member 3 AI service
+
+## Member 3 - AI Developer
+
+Folder: `member-3-ai`
+
+Technology: Python FastAPI, IBM Granite / watsonx.ai, Node/React integration via REST
+
+Build:
+
+- Summariser
+- Quiz generator
+- Flash cards
+- Paragraph to bullets
+- Maths diagram SVG
+- Optional IBM watsonx credentials via `.env.example`
+
+## Integration contract
+
+Frontend talks only to `/api`.
+
+Backend talks to AI at `http://127.0.0.1:5000`.

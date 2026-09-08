@@ -1,0 +1,25 @@
+#!/bin/bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+echo "Installing AI Python packages"
+pip install --break-system-packages -r "$ROOT/member-3-ai/requirements.txt"
+
+echo "Starting Member 3 AI on port 5000"
+cd "$ROOT/member-3-ai"
+python3 main.py &
+AI_PID=$!
+
+echo "Starting Member 2 Spring Boot on port 8080"
+cd "$ROOT/member-2-backend"
+mvn -q spring-boot:run &
+API_PID=$!
+
+echo "Starting Member 1 React on port 5173"
+cd "$ROOT/member-1-frontend"
+npm run dev -- --host 0.0.0.0 --port 5173 &
+WEB_PID=$!
+
+trap "kill $AI_PID $API_PID $WEB_PID" EXIT
+wait
